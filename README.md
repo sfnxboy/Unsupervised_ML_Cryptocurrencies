@@ -32,6 +32,15 @@ As with supervised learning, data should be preprocessed into a correct format w
 - **Data Processing:** Data processing involves organizing the data by formatting, cleaning, and sampling it. For instance, say the date column in your dataset has dates in two different formates, we would convert all dates to the same format. 
 - **Data Transformation:** Data transformation entails transforming datasets into a simpler format for storage and future use, such as a CSV, spreadsheet, or database file. 
 
+When preparing our data we should consider the following questions:  
+- What knowledge do we hope to glean from running an unsupervised learning model on this dataset?
+- What data is available? What type? What is missing? What can be removed?
+- Is the data in a format that can be passed into an unsupervised learning model?
+- Can I quickly hand off this data for others to use?
+
+Take a look at the [shopping_preprocess](https://github.com/sfnxboy/Unsupervised_ML_Cryptocurrencies/blob/main/Demo/shopping_preprocess.ipynb) file, where I take the [original shopping data](https://github.com/sfnxboy/Unsupervised_ML_Cryptocurrencies/blob/main/Resources/shopping_data.csv), apply preprocessing techniques to prepare it for machine learning algorithms, and [export](https://github.com/sfnxboy/Unsupervised_ML_Cryptocurrencies/blob/main/Resources/shopping_data_cleaned.csv) the file.
+
+
 Describe the differences between supervised and unsupervised learning, including real-world examples of each.
 Preprocess data for unsupervised learning.
 Cluster data using the K-means algorithm.

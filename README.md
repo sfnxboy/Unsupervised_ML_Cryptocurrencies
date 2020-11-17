@@ -40,6 +40,40 @@ When preparing our data we should consider the following questions:
 
 Take a look at the [shopping_preprocess](https://github.com/sfnxboy/Unsupervised_ML_Cryptocurrencies/blob/main/Demo/shopping_preprocess.ipynb) file, where I take the [original shopping data](https://github.com/sfnxboy/Unsupervised_ML_Cryptocurrencies/blob/main/Resources/shopping_data.csv), apply preprocessing techniques to prepare it for machine learning algorithms, and [export](https://github.com/sfnxboy/Unsupervised_ML_Cryptocurrencies/blob/main/Resources/shopping_data_cleaned.csv) the file.
 
+### Clustering Data
+
+Clustering is a type of unsupervised machine learning that groups data points together. Say we have a dataset of flowers, with four features, sepal width, sepal length, petal width, petal length. One may observe that data points (flowers) with similar features seem to be closer together than data points with dissimilar features. We can use this spatial information to group similar data points together. This group of data points is called a cluster.
+
+**K-Means Algorithm**
+
+K-means is an unsupervised machine learning algorithm used to identify and solve clustering issues. **K** represents how many clusters there will be. These clusters are then determined by the **means** of all points that will belong to that cluster, where belonging to a cluster is based on some similarity or distance measure to a centroid. A **centroid** is a data point that is the arithmetic mean position of all the points on a cluster. The following [code](https://github.com/sfnxboy/Unsupervised_ML_Cryptocurrencies/blob/main/Demo/Clustering_iris.ipynb) displays how one may use the K-means algorithm.  
+```
+# Initializing model with K = 3 (since we already know there are three classes of iris plants)
+model = KMeans(n_clusters=3, random_state=5)
+model
+
+# Fitting model
+model.fit(df_iris)
+
+# Get the predictions
+predictions = model.predict(df_iris)
+print(predictions)
+
+# Add a new class column to the df_iris
+df_iris["class"] = model.labels_
+df_iris.head()
+
+# Import visualization libraries
+import plotly.express as px
+import hvplot.pandas
+
+# Plotting the clusters with three features
+fig = px.scatter_3d(df_iris, x="petal_width", y="sepal_length", z="petal_length", color="class", symbol="class", size="sepal_width",width=800)
+fig.update_layout(legend=dict(x=0,y=1))
+fig.show()
+```  
+This code outputs a 3D Model  
+![image](https://user-images.githubusercontent.com/68082808/99406732-3d291f80-28bc-11eb-85ee-a74048e3746e.png)
 
 Describe the differences between supervised and unsupervised learning, including real-world examples of each.
 Preprocess data for unsupervised learning.

@@ -75,6 +75,10 @@ fig.show()
 This code outputs a 3D Model  
 ![image](https://user-images.githubusercontent.com/68082808/99406732-3d291f80-28bc-11eb-85ee-a74048e3746e.png)
 
+In [Trial_&Error_finding_centroids](https://github.com/sfnxboy/Unsupervised_ML_Cryptocurrencies/blob/main/Demo/Trial_%26Error_finding_centroids.ipynb) we apply the K-means algorithm to a dataset which does not have a predefined number of clusters. The programmer can create models with any number of cluters they would like! As we add more and more clusters to the code, we see some solid clusters break out. However, before we get trigger-happy and increase the clusters further, we should consider when there might be too many clusters. If we have too many, will it even tell us something about the data? If we increase to 100 clusters, that would really fine-tune each group, but with so many clusters, can we even do anything with that?
+
+Recall that unsupervised learning doesn't have a concrete outcome like supervised learning does. We use unsupervised learning to parse data to help us make decisions. So, at what point do we lose the helpfulness of unsupervised learning? With trial and error, this can become unclear and can only get us so far with more complex datasets.
+
 Describe the differences between supervised and unsupervised learning, including real-world examples of each.
 Preprocess data for unsupervised learning.
 Cluster data using the K-means algorithm.

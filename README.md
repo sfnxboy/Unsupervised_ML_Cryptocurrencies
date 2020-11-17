@@ -1,4 +1,4 @@
-# Unsupervised_ML_Cryptocurrencies
+# Unsupervised Machine Learning: Cryptocurrencies
 
 ## Overview
 Unlike supervised machine learning, we use unsupervised machine learning when there is no known output. Instead, unsupervised machine learning is used to find patterns, or groups, in date. For instance, a bank could use customer segmentation to offer credit cards according to demographics. They could group prospective card holders by age, geography, or gender. Perhaps they target generations, like millenials and baby boomers, or use income level or marital status. Its important to note that unsupervised machine learning uses input data only. In this project we will process data for an unsupervised model, group data using clustering and the K-means algorithm, and lastly make the models more efficient using principle component analysis.
@@ -27,6 +27,10 @@ There are **challenges** that arise when working with unsupervised machine learn
 ### Preprocessing Data
 
 As with supervised learning, data should be preprocessed into a correct format with only numerical values, null value determination, and so forth. The only difference is unsupervised learning doesn't have a target variable—it only has input features that will be used to find patterns in the data. It's important to carefully select features that could help to find those patterns or create groups.
+
+- **Data Selection:** Consider what data is available, what data is missing, and what data can be removed. Data selection entails making good choices about which data will be used.
+- **Data Processing:** Data processing involves organizing the data by formatting, cleaning, and sampling it. For instance, say the date column in your dataset has dates in two different formates, we would convert all dates to the same format. 
+- **Data Transformation:** Data transformation entails transforming datasets into a simpler format for storage and future use, such as a CSV, spreadsheet, or database file. 
 
 Describe the differences between supervised and unsupervised learning, including real-world examples of each.
 Preprocess data for unsupervised learning.

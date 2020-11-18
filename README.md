@@ -81,10 +81,36 @@ Recall that unsupervised learning doesn't have a concrete outcome like supervise
 
 **Elbow Curve**
 
-An easy method for determining the best number for K is the [elbow curve](https://github.com/sfnxboy/Unsupervised_ML_Cryptocurrencies/blob/main/Demo/Elbow_curve.ipynb). Elbow curves get their names from their shape: they turn on a specific value, which looks a bit like an elbow! Inertia is one of the most common objective functions to use when creating an elbow curve. While what it's actually doing can get into some pretty complicated math, basically the inertia objective function is measuring the amount of variation in the dataset.
+An easy method for determining the best number for K is the [elbow curve](https://github.com/sfnxboy/Unsupervised_ML_Cryptocurrencies/blob/main/Demo/Elbow_curve.ipynb). Elbow curves get their names from their shape: they turn on a specific value, which looks a bit like an elbow! Inertia is one of the most common objective functions to use when creating an elbow curve. While what it's actually doing can get into some pretty complicated math, basically the inertia objective function is measuring the amount of variation in the dataset.  
+![image](https://user-images.githubusercontent.com/68082808/99470029-03830380-2912-11eb-8ff3-88b95dbb4849.png)  
+Note the shape of the curve on the following graph. At point 0 (top left), the line starts as a steep vertical slope that breaks at point 2, shifts to a slightly horizontal slope, breaks again at point 3, then shifts to a strong horizontal line that reaches to point 10. The angle at point 3 looks like an elbow, which gives this type of curve its name.
 
-Describe the differences between supervised and unsupervised learning, including real-world examples of each.
-Preprocess data for unsupervised learning.
-Cluster data using the K-means algorithm.
-Determine the best amount of centroids for K-means using the elbow curve.
-Use PCA to limit features and speed up the model.
+### Managing Data Features
+
+When working with a data set that has too many features, one may want to consider dimensionality reduction. Overfitting is a model is a mad idea because if the model is too specific, future datasets that have different trends will be less accurate. Your first idea is to remove a good amount of features so the model won't be run using every column. This is called **feature elimination**. The downside is, once you remove that feature, you can no longer glean information from it. If we want to know the likelihood of people buying school supplies, but we removed the zip code feature, then we'd miss a detail that could help us understand when certain residents tend to purchase school supplies.  
+**Feature extraction** combines all features into a new set that is ordered by how well they predict our original variable. In other words, feature extraction reduces the number of dimensions by transforming a large set of variables into a smaller one. This smaller set of variables contains most of the important information from the original large set. Sometimes, you need to use both feature elimination and extraction. For instance, the customer name feature doesn't inform us about whether or not customers will purchase school supplies. So, we would eliminate that feature during the preprocessing stage, then apply extraction on the remaining features.
+
+**Principal Component Analysis**  
+PCA is a statistical technique to speed up machine learning algorithms when the number of input features (or dimensions) is too high. PCA reduces the number of dimensions by transforming a large set of variables into a smaller one that contains most of the information in the original large set. PCA is a complicated process to understand, but it is easy to [code](https://github.com/sfnxboy/Unsupervised_ML_Cryptocurrencies/blob/main/Demo/Principal_Component_Analysis.ipynb).
+
+- The first step in PCA is to standardize these features by using the StandardScaler library:  
+```iris_scaled = StandardScaler().fit_transform(df_iris)```
+- Now that the data has been standardized, we can use PCA to reduce the number of features. The PCA method takes an argument of n_components, which will pass in the value of 2, thus reducing the features from 4 to 2:
+```pca = PCA(n_components=2)```
+- After creating the PCA model, we apply dimensionality reduction on the scaled dataset:
+```iris_pca = pca.fit_transform(iris_scaled)```
+- After this dimensionality reduction, we get a smaller set of dimensions called principal components. These new components are transformed into a DataFrame to fit K-means:
+```df_iris_pca = pd.DataFrame(data=iris_pca, columns=["principal component 1", "principal component 2"])```
+
+The ```explained_variance_ration``` method defines how much information can be attributed to each component.  
+![image](https://user-images.githubusercontent.com/68082808/99474320-5b256d00-291a-11eb-834b-d68aebf217a0.png)  
+This tells us, is that the first principal component contains 72.77% of the variance and the second contains 23.03%. Together, they contain 95.80% of the information. We then create an elbow curve with the generated principal components and find that the K value is three, we initialize a 2-D k-means model, and lastly we plot the clusters.
+
+Lets look at what is happening under the hood. First, center the points by taking the average of the coordinates, and then moving that balance point to zero, this is a simple transformation. Once the points are centered, we create a 2x2 matric that consits of the variance and covariances as so:  
+![image](https://user-images.githubusercontent.com/68082808/99476216-21566580-291e-11eb-9a9b-5f4650ebba5d.png)  
+Say the matrix comes out to the following:  
+![image](https://user-images.githubusercontent.com/68082808/99476256-33380880-291e-11eb-9cdc-8695440958db.png)
+This matrix will be used to transform the points from one graph to another by using the numbers to create a formula for our transformation. The top two values of the matrix will correspond to one point and the bottom two values to another. In our example, the formula for the points becomes (6x + 2y, 2x, + 3y).  
+We can now plot (x, y) coordinates into this formula to get a new set of points, plotting these points we create a linear transformation.  
+![image](https://user-images.githubusercontent.com/68082808/99476380-76927700-291e-11eb-9c8e-14e4b6c47998.png)  
+As you can see, the points stretch out in our graph in two directions. One direction moves from southwest to northeast direction while another direction moves from northwest to southeast. These are called eigenvectors. The magnitude that each of eigenvetors stretch is called the eigenvalue. Eigenvalues and eigenvectors are a complicated subject rooted in linear algebra that are beyond the scope of this project. The big takeaway from eigenvectors and eigenvalues is that they show us the spread of the dataset and by how much.

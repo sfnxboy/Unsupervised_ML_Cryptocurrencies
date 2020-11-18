@@ -77,13 +77,23 @@ In [Trial_&Error_finding_centroids](https://github.com/sfnxboy/Unsupervised_ML_C
 
 Recall that unsupervised learning doesn't have a concrete outcome like supervised learning does. We use unsupervised learning to parse data to help us make decisions. So, at what point do we lose the helpfulness of unsupervised learning? With trial and error, this can become unclear and can only get us so far with more complex datasets.
 
-**Heirarchical Clustering**  
-
-
 **Elbow Curve**  
 An easy method for determining the best number for K is the [elbow curve](https://github.com/sfnxboy/Unsupervised_ML_Cryptocurrencies/blob/main/Demo/Elbow_curve.ipynb). Elbow curves get their names from their shape: they turn on a specific value, which looks a bit like an elbow! Inertia is one of the most common objective functions to use when creating an elbow curve. While what it's actually doing can get into some pretty complicated math, basically the inertia objective function is measuring the amount of variation in the dataset.  
 ![image](https://user-images.githubusercontent.com/68082808/99470029-03830380-2912-11eb-8ff3-88b95dbb4849.png)  
 Note the shape of the curve on the following graph. At point 0 (top left), the line starts as a steep vertical slope that breaks at point 2, shifts to a slightly horizontal slope, breaks again at point 3, then shifts to a strong horizontal line that reaches to point 10. The angle at point 3 looks like an elbow, which gives this type of curve its name.
+
+**Heirarchical Clustering**  
+Similar to K-means clustering, hierarchical clustering, also known as agglomerative clustering, works with groups (clusters) of data points. The algorithm starts by declaring each point with its own cluster, then merges the two most similar clusters until a declared stopping point has been reached. This stopping point is implemented within your code. Hierarchical clustering has three methods for determining how points are linked: ward, average, and complete.  
+- **Ward** is the alrgorithms defulat setting. Simply, this function selects the two clusters, that when merged will mean the least amount of variance between all remaining clusters. This often leads to clusters that are relatively the same in size.
+- Linking points by **average** is a method that connects clusters that have the smallest average distance between all of their points, then connects the clusters on the smallest average distance between all of their points.
+- The **complete** method links by merging clusters that have the smallest maximum distance.
+
+Just like with K-means, trial and error for the amount of clusters is not ideal, even in hierarchical clustering. Luckily, there is a similar method with the use of **dendrograms**. A dendrogram is a graph that keeps the values of the points on the x-axis, then connects all the points as they are clustered. This is similar to the elbow curve, as it gives us a better idea of the ideal amount of clusters we want to use. After making a dendrogram, you'll know how many clusters to make based on how refined you want them to be.
+
+Check out the [Heirarchical Clustering]() notebook file and rerun the algorithm using different cuttoffs from the dendrogram.
+
+Behind the scenes, K-means is dependent on random initialization, so the outcome depends on a random seed. With K-means, you need to have an idea of how many clusters you're looking for ahead of time, which might not always be known. This can be an issue when the points of data are not so clearly grouped into clusters, as K-means works best for spherical-looking data with similar density points closely grouped together.  
+With hierarchical clustering and the use of dendrograms, it's easier to pick how many clusters we want without making any assumptions since a K value does not need to be known ahead of time.
 
 ### Managing Data Features  
 When working with a data set that has too many features, one may want to consider dimensionality reduction. Overfitting is a model is a mad idea because if the model is too specific, future datasets that have different trends will be less accurate. Your first idea is to remove a good amount of features so the model won't be run using every column. This is called **feature elimination**. The downside is, once you remove that feature, you can no longer glean information from it. If we want to know the likelihood of people buying school supplies, but we removed the zip code feature, then we'd miss a detail that could help us understand when certain residents tend to purchase school supplies.  

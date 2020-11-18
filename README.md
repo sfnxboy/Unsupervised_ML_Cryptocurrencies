@@ -79,6 +79,10 @@ In [Trial_&Error_finding_centroids](https://github.com/sfnxboy/Unsupervised_ML_C
 
 Recall that unsupervised learning doesn't have a concrete outcome like supervised learning does. We use unsupervised learning to parse data to help us make decisions. So, at what point do we lose the helpfulness of unsupervised learning? With trial and error, this can become unclear and can only get us so far with more complex datasets.
 
+**Elbow Curve**
+
+An easy method for determining the best number for K is the [elbow curve](https://github.com/sfnxboy/Unsupervised_ML_Cryptocurrencies/blob/main/Demo/Elbow_curve.ipynb). Elbow curves get their names from their shape: they turn on a specific value, which looks a bit like an elbow! Inertia is one of the most common objective functions to use when creating an elbow curve. While what it's actually doing can get into some pretty complicated math, basically the inertia objective function is measuring the amount of variation in the dataset.
+
 Describe the differences between supervised and unsupervised learning, including real-world examples of each.
 Preprocess data for unsupervised learning.
 Cluster data using the K-means algorithm.

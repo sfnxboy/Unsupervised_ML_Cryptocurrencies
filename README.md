@@ -40,12 +40,10 @@ When preparing our data we should consider the following questions:
 
 Take a look at the [shopping_preprocess](https://github.com/sfnxboy/Unsupervised_ML_Cryptocurrencies/blob/main/Demo/shopping_preprocess.ipynb) file, where I take the [original shopping data](https://github.com/sfnxboy/Unsupervised_ML_Cryptocurrencies/blob/main/Resources/shopping_data.csv), apply preprocessing techniques to prepare it for machine learning algorithms, and [export](https://github.com/sfnxboy/Unsupervised_ML_Cryptocurrencies/blob/main/Resources/shopping_data_cleaned.csv) the file.
 
-### Clustering Data
-
+### Clustering Data  
 Clustering is a type of unsupervised machine learning that groups data points together. Say we have a dataset of flowers, with four features, sepal width, sepal length, petal width, petal length. One may observe that data points (flowers) with similar features seem to be closer together than data points with dissimilar features. We can use this spatial information to group similar data points together. This group of data points is called a cluster.
 
-**K-Means Algorithm**
-
+**K-Means Algorithm**  
 K-means is an unsupervised machine learning algorithm used to identify and solve clustering issues. **K** represents how many clusters there will be. These clusters are then determined by the **means** of all points that will belong to that cluster, where belonging to a cluster is based on some similarity or distance measure to a centroid. A **centroid** is a data point that is the arithmetic mean position of all the points on a cluster. The following [code](https://github.com/sfnxboy/Unsupervised_ML_Cryptocurrencies/blob/main/Demo/Clustering_iris.ipynb) displays how one may use the K-means algorithm.  
 ```
 # Initializing model with K = 3 (since we already know there are three classes of iris plants)
@@ -79,14 +77,15 @@ In [Trial_&Error_finding_centroids](https://github.com/sfnxboy/Unsupervised_ML_C
 
 Recall that unsupervised learning doesn't have a concrete outcome like supervised learning does. We use unsupervised learning to parse data to help us make decisions. So, at what point do we lose the helpfulness of unsupervised learning? With trial and error, this can become unclear and can only get us so far with more complex datasets.
 
-**Elbow Curve**
+**Heirarchical Clustering**  
 
+
+**Elbow Curve**  
 An easy method for determining the best number for K is the [elbow curve](https://github.com/sfnxboy/Unsupervised_ML_Cryptocurrencies/blob/main/Demo/Elbow_curve.ipynb). Elbow curves get their names from their shape: they turn on a specific value, which looks a bit like an elbow! Inertia is one of the most common objective functions to use when creating an elbow curve. While what it's actually doing can get into some pretty complicated math, basically the inertia objective function is measuring the amount of variation in the dataset.  
 ![image](https://user-images.githubusercontent.com/68082808/99470029-03830380-2912-11eb-8ff3-88b95dbb4849.png)  
 Note the shape of the curve on the following graph. At point 0 (top left), the line starts as a steep vertical slope that breaks at point 2, shifts to a slightly horizontal slope, breaks again at point 3, then shifts to a strong horizontal line that reaches to point 10. The angle at point 3 looks like an elbow, which gives this type of curve its name.
 
-### Managing Data Features
-
+### Managing Data Features  
 When working with a data set that has too many features, one may want to consider dimensionality reduction. Overfitting is a model is a mad idea because if the model is too specific, future datasets that have different trends will be less accurate. Your first idea is to remove a good amount of features so the model won't be run using every column. This is called **feature elimination**. The downside is, once you remove that feature, you can no longer glean information from it. If we want to know the likelihood of people buying school supplies, but we removed the zip code feature, then we'd miss a detail that could help us understand when certain residents tend to purchase school supplies.  
 **Feature extraction** combines all features into a new set that is ordered by how well they predict our original variable. In other words, feature extraction reduces the number of dimensions by transforming a large set of variables into a smaller one. This smaller set of variables contains most of the important information from the original large set. Sometimes, you need to use both feature elimination and extraction. For instance, the customer name feature doesn't inform us about whether or not customers will purchase school supplies. So, we would eliminate that feature during the preprocessing stage, then apply extraction on the remaining features.
 

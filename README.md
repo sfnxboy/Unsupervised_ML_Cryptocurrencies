@@ -103,7 +103,7 @@ PCA is a statistical technique to speed up machine learning algorithms when the 
 ```df_iris_pca = pd.DataFrame(data=iris_pca, columns=["principal component 1", "principal component 2"])```
 
 The ```explained_variance_ration``` method defines how much information can be attributed to each component.  
-![image](https://user-images.githubusercontent.com/68082808/99474320-5b256d00-291a-11eb-834b-d68aebf217a0.png)  
+![image](https://user-images.githubusercontent.com/68082808/99477016-a726e080-291f-11eb-9597-4922a9575af6.png)  
 This tells us, is that the first principal component contains 72.77% of the variance and the second contains 23.03%. Together, they contain 95.80% of the information. We then create an elbow curve with the generated principal components and find that the K value is three, we initialize a 2-D k-means model, and lastly we plot the clusters.
 
 Lets look at what is happening under the hood. First, center the points by taking the average of the coordinates, and then moving that balance point to zero, this is a simple transformation. Once the points are centered, we create a 2x2 matric that consits of the variance and covariances as so:  
